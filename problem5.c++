@@ -4,50 +4,68 @@
 
 
 
+//calc days, hours, minutes, seconds from month 2;
+
+
+
+
+
 #include <iostream>
 using namespace std;
-bool isLeapYear(short Year)
-{
-	// if year is divisible by 4 AND not divisible by 100
-	// OR if year is divisible by 400
-	// then it is a leap year
-	return (Year % 4 == 0 && Year % 100 != 0) || (Year % 400 == 0);
-}
-short NumberOfDaysInMonth2(short Year)
-{
-	return isLeapYear(Year) ? 29 : 28;
-}
-short NumberOfHoursInMonth2(short Year)
-{
-	return NumberOfDaysInMonth2(Year) * 24;
-}
-int NumberOfMinutesInMonth2(short Year)
-{
-	return NumberOfHoursInMonth2(Year) * 60;
-}
-int NumberOfSecondsInMonth2(short Year)
-{
-	return NumberOfMinutesInMonth2(Year) * 60;
-}
-short ReadYear()
-{
-	short Year;
-	cout << "\nPlease enter a year to check? ";
-	cin >> Year;
-	return Year;
+
+bool isLeapYear(short Year) {
+    return (Year % 4 == 0 && Year % 100 != 0) || (Year % 400 == 0);
 }
 
-int main()
-{
-	short Year = ReadYear();
-	cout << "\nNumber of Days in Month 2 [" << Year << "] is "
-		<< NumberOfDaysInMonth2(Year);
-	cout << "\nNumber of Hours in Month 2 [" << Year << "] is "
-		<< NumberOfHoursInMonth2(Year);
-	cout << "\nNumber of Minutes in Month 2 [" << Year << "] is "
-		<< NumberOfMinutesInMonth2(Year);
-	cout << "\nNumber of Seconds in Month 2 [" << Year << "] is "
-		<< NumberOfSecondsInMonth2(Year);
-	system("pause>0");
-	return 0;
+short NumberOfDaysInMonth(short Year, short month) {
+    if (month < 1 || month > 12)
+        return 0;
+
+    if (month == 2)
+        return isLeapYear(Year) ? 29 : 28;
+
+    short arr31Days[7] = { 1, 3, 5, 7, 8, 10, 12 };
+    for (short i = 0; i < 7; i++) {
+        if (arr31Days[i] == month)
+            return 31;
+    }
+
+    return 30;
+}
+
+int NumberOfHoursInMonth(short Year, short month) {
+    return NumberOfDaysInMonth(Year, month) * 24;
+}
+
+int NumberOfMinutesInMonth(short Year, short month) {
+    return NumberOfHoursInMonth(Year, month) * 60;
+}
+
+int NumberOfSecondsInMonth(short Year, short month) {
+    return NumberOfMinutesInMonth(Year, month) * 60;
+}
+
+short ReadValue(string msg) {
+    short value;
+    cout << msg;
+    cin >> value;
+    return value;
+}
+
+int main() {
+    short Year = ReadValue("Please enter a year: ");
+    short month = ReadValue("Please enter a month (1-12): ");
+
+    short days = NumberOfDaysInMonth(Year, month);
+    int hours = NumberOfHoursInMonth(Year, month);
+    int minutes = NumberOfMinutesInMonth(Year, month);
+    int seconds = NumberOfSecondsInMonth(Year, month);
+
+    cout << "\nNumber of Days in month [" << month << "] of year [" << Year << "] is: " << days;
+    cout << "\nNumber of Hours: " << hours;
+    cout << "\nNumber of Minutes: " << minutes;
+    cout << "\nNumber of Seconds: " << seconds << endl;
+
+    system("pause>0");
+    return 0;
 }
