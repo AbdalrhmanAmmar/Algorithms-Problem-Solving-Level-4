@@ -1,0 +1,1 @@
+Equal date1 with date2 
