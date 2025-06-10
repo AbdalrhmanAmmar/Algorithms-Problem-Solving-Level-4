@@ -28,26 +28,19 @@ short NumberOfDaysInMonth(short Year, short month) {
 
 }
 
-int dateafteradd(int day, int month, int year, int dayremind) {
-	int dayremind += day;
+void dateafteradd(int day, int month, int year, int daysToAdd) {
+	int totalDays = day + daysToAdd;
 
-	while (dayremind > (NumberOfDaysInMonth(year, month))) {
-		dayremind -= (NumberOfDaysInMonth(year, month));
+	while (totalDays > NumberOfDaysInMonth(year, month)) {
+		totalDays -= NumberOfDaysInMonth(year, month);
 		month++;
-			if (month > 12) {
-				month = 1;
-				year++;
+		if (month > 12) {
+			month = 1;
+			year++;
 		}
-			cout << month;
-			cout << year;
 	}
-	return dayremind;
 
-
-	cout << dayremind << "/" << month << "/" << year << endl;
-
-
-
+	cout << "Date after adding days: " << totalDays << "/" << month << "/" << year << endl;
 }
 
 
@@ -61,5 +54,5 @@ int main() {
 	int dayadded= Readnumber("please add day you wanna");
 
 
-	cout<<dateafteradd(day, month, year, dayadded);
+	dateafteradd(day, month, year, dayadded);
 }
