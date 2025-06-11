@@ -8,12 +8,20 @@ short Year;
 short Month;
 short Day;
 };
+// bool IsDate1EqualDate2(stDate Date1, stDate Date2)
+// {
+// return (Date1.Year == Date2.Year) ? ((Date1.Month ==
+// Date2.Month) ? ((Date1.Day == Date2.Day) ? true : false)
+// : false) : false;
+// }
+
 bool IsDate1EqualDate2(stDate Date1, stDate Date2)
 {
-return (Date1.Year == Date2.Year) ? ((Date1.Month ==
-Date2.Month) ? ((Date1.Day == Date2.Day) ? true : false)
-: false) : false;
+	return (Date1.Year == Date2.Year) &&
+		(Date1.Month == Date2.Month) &&
+		(Date1.Day == Date2.Day);
 }
+
 short ReadDay()
 {
 short Day;
