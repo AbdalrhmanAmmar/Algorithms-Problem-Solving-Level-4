@@ -73,9 +73,7 @@ cout << "Please enter a Year? ";
 cin >> Year;
 return Year;
 }
-ProgrammingAdvices.com
-© Copyright 2022
-Problem # 16/4 Solution Using C++
+
 stDate ReadFullDate()
 {
 stDate Date;
