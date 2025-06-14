@@ -26,6 +26,20 @@ bool IsDate1AfterDate2(stDate Date1, stDate Date2)
 return (!IsDate1BeforeDate2(Date1, Date2) &&
 !IsDate1EqualDate2(Date1, Date2));
 }
+
+enum enDateCompare { Before = -1, Equal = 0, After = 1 };
+enDateCompare CompareDates(stDate Date1, stDate Date2)
+{
+if (IsDate1BeforeDate2(Date1, Date2))
+return enDateCompare::Before;
+if (IsDate1EqualDate2(Date1, Date2))
+return enDateCompare::Equal;
+/* if (IsDate1AfterDate2(Date1,Date2))
+return enDateCompare::After;*/
+//this is faster
+return enDateCompare::After;
+}
+
 short ReadDay()
 {
 short Day;
@@ -62,10 +76,7 @@ cout << "\nEnter Date1:";
 stDate Date1 = ReadFullDate();
 cout << "\nEnter Date2:";
 stDate Date2 = ReadFullDate();
-if (IsDate1AfterDate2(Date1, Date2))
-cout << "\nYes, Date1 is After Date2.";
-else
-cout << "\nNo, Date1 is NOT After Date2.";
+cout << "\nCompare Result = " << CompareDates(Date1, Date2);
 system("pause>0");
 return 0;
 }
