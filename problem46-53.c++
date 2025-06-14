@@ -101,3 +101,42 @@ bool IsWeekEnd(stDate Date)
 short DayIndex = DayOfWeekOrder(Date);
 return (DayIndex == 5 || DayIndex == 6);
 }
+
+int main()
+{
+stDate Date1 = GetSystemDate();
+cout << "\nToday is " << DayShortName(DayOfWeekOrder(Date1))
+<< " , "
+<< Date1.Day << "/" << Date1.Month << "/" << Date1.Year <<
+endl;
+//---------------------
+cout << "\nIs it End of Week?\n";
+if (IsEndOfWeek(Date1))
+cout << "Yes it is Saturday, it's of Week.";
+else
+cout << "No it's Not end of week.";
+//---------------------
+cout << "\n\nIs it Weekend?\n";
+if (IsWeekEnd(Date1))
+cout << "Yes it is a week end.";
+else
+cout << "No today is " <<
+DayShortName(DayOfWeekOrder(Date1)) << ", Not a weekend.";
+//---------------------
+cout << "\n\nIs it Business Day?\n";
+if (IsBusinessDay(Date1))
+cout << "Yes it is a business day.";
+else
+cout << "No it is NOT a business day.";
+//---------------------
+cout << "\n\nDays until end of week : "
+<< DaysUntilTheEndOfWeek(Date1) << " Day(s).";
+//---------------------
+cout << "\nDays until end of month : "
+<< DaysUntilTheEndOfMonth(Date1) << " Day(s).";
+//---------------------
+cout << "\nDays until end of year : "
+<< DaysUntilTheEndOfYear(Date1) << " Day(s).";
+system("pause>0");
+return 0;
+}
